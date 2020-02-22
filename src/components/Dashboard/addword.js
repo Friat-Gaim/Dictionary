@@ -4,7 +4,26 @@ import {connect} from 'react-redux';
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import Navbar from '../layout/Navbar'
+import { Carousel } from 'react-responsive-carousel';
 import { Input } from 'antd';
+const responsive = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 1,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 1,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 1,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 class Addword extends Component {
     state={
         WordName:'',
@@ -53,13 +72,14 @@ class Addword extends Component {
         fontweight:'30',
         fontSize:'20px',
       }
-      return (
+      return (<>
+        <Carousel responsive={responsive} autoPlay="true" infinite="true" autoPlaySpeed='6000' ></Carousel>
      <div>
          <Navbar/>
          <section>
              <div class="container">
              <h2 style={styles}  style={{textAlign:"center",fontFamily:"Times New Roman Times serif",fontWeight:"bold",fontSize:"24px"}}>Insert New Words To The Dictionary</h2>
-             <div class="row">{this.state.error}</div>
+             <div class="row center p-2 ml-5">{this.state.error}</div>
              <form class="card p-5 mt-4">
                 <div>
                 <div class="row">
@@ -106,7 +126,8 @@ class Addword extends Component {
              </form>
              </div>
          </section>   
-</div>
+        </div>
+      </>
         );
     }
 }
