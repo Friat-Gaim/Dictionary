@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-//import menu from './menu.png';
+import menu from '../img/logo.jpg'
 const Navbar = props => {
   return (
 
@@ -13,13 +13,15 @@ const Navbar = props => {
           Home
         </Link>
       </li>
-      <li class="nav-item" style={{marginLeft:"130%",fontFamily:"Times New Roman Times serif"}}>
+      <li class="nav-item" style={{marginLeft:"150%",fontFamily:"Times New Roman Times serif"}}>
       <Link to="/" style={{fontSize:"22px"}}>
           English_Dictionary
         </Link>
       </li>
-      <li class="nav-item pl-5" style={{marginLeft:"130%",fontFamily:"Times New Roman Times serif"}}>
-        <a class="nav-link" href="#" style={{fontSize:"22px"}}>Books</a>
+      <li class="nav-item pl-5" style={{marginLeft:"150%",fontFamily:"Times New Roman Times serif"}}>
+        <a class="nav-link" href="#" style={{fontSize:"22px"}}>
+          <img src={menu} alt="menu"style={{height:'30px'}}/>
+        </a>
       </li>
     </ul>
     </nav>

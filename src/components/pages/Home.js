@@ -1,8 +1,9 @@
 import React,{Component} from 'react'
 import{Redirect,Link} from 'react-router-dom'
 import { connect } from 'react-redux'
-import home from './rewina.jpg'
-import Logo from './Dictionary_Logo.png'
+import Logo from '../img/books.PNG'
+import home from '../img/homeimage.PNG'
+import reader from '../img/night.PNG'
 import Navbar from '../layout/Navbar';
 import { Carousel } from 'react-responsive-carousel';
 const responsive = {
@@ -33,27 +34,39 @@ render(){
       <Navbar/>
       <div>
       <div class="row mx-1">
-          <div class="col card" style={{height:'520px'}}>
-            <p class="font-weight-bold text-center">If there is new word Add to this web app</p>
+          <div class="col card" style={{height:'540px'}}>
+            <img class="img-fluid mb-4 mt-3" src={Logo} alt="home image" style={{height:'400px'}}/>
+            <p class="ml-5">If there is new word Add to this</p>
             <Link to="/addword" >
-              <button type="button" class="ml-5 btn btn-success">Click Here to New Add Word</button>
+              <button type="button" class="ml-5 mb-2 btn btn-success">Click Here to New Add Word</button>
             </Link>
           </div>
           <div class="col card ">
-           <p class="font-weight-bold text-center">English Dictionary for Begnners</p>
-           <p class="text-center">Search More Word to Know More</p>
-           <image src="./Dictionary_Logo"></image>
-           <p class="text-center">ዘነበብ ይዕንብብ፡the most reader is fruit full</p>
+            <p class="font-weight-bold text-center">English Dictionary for Begnners</p>
+            <p class="">The Oxford English Dictionary (OED) is widely regarded as the accepted authority on the English language. It is an unsurpassed guide to the meaning, history, 
+              and pronunciation of 600,000 words— past and present—from across the English-speaking world.
+            </p>
+            <p>
+              As a historical dictionary, the OED is very different from dictionaries of current English, in which the focus is on present-day meanings. You’ll still find present-day meanings in the OED, but you’ll also find the history of individual words, and of the language—traced
+              through 3 million quotations, from classic literature and specialist periodicals to film scripts and cookery books.
+            </p>
+            <p>
+              The OED started life more than 150 years ago. Today, the dictionary is in the process of its first major revision. Updates revise
+              and extend the OED at regular intervals, each time subtly adjusting our image of the English language.
+            </p>
+           <p class="text-center mb-1 text-success">ዘነበብ ይዕንብብ፡the most reader is fruit full</p>
+           {/* <img class="img-fluid " src={home} alt="home image" style={{height:'400px'}}/> */}
           </div>
-          <div class="col card" style={{height:'520px'}}>
-            <p class="font-weight-bold text-center textcolor-primary">If there is new word Add to this web app</p>
+          <div class="col card" style={{height:'540px'}}>
+            <img class="img-fluid mb-4 mt-3" src={reader} alt="home image" style={{height:'400px'}}/>
+            <p class="ml-5">If there is new word Search in this</p>
             <Link to="/addword" >
-            <button type="button" class="btn btn-success ml-5"> Click Here to Sereach Word</button>
+            <button type="button" class="btn btn-success ml-5 mb-2"> Click Here to Sereach Word</button>
             </Link>
           </div>
         </div>
           <div class="mb-2">                            
-                <footer><p class="text-center">English dictionary, Anginners.com @ copy right</p></footer>
+                <footer><p class=" text-center text-warning">English dictionary, Anginners.com @ copy right</p></footer>
           </div>
       </div>
         
