@@ -1,37 +1,79 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import menu from '../img/logo.jpg'
-const Navbar = props => {
-  return (
+import React  from 'react';
+import {Link} from 'react-router-dom';
+import SignedInLink from './SignInLink';
+import { connect } from 'react-redux'
+import SignedOutLink from './SignOutLink'
+import Modal from "react-bootstrap/Modal";
+const App = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
 
-    <nav class="navbar navbar-expand-sm bg-light">
-    <ul class="navbar-nav">
-      <li class="nav-item" style={{fontSize:"22px",fontFamily:"Times New Roman Times serif"}}>
-        {/* <a class="nav-link" href="#/" style={{fontSize:"22px",fontFamily:"Times New Roman Times serif"}}>Home </a> */}
-        <Link to="/" style={{fontSize:"22px"}}>
-          Home
-        </Link>
-      </li>
-      <li class="nav-item" style={{marginLeft:"150%",fontFamily:"Times New Roman Times serif"}}>
-      <Link to="/" style={{fontSize:"22px"}}>
-          English_Dictionary
-        </Link>
-      </li>
-      <li class="nav-item pl-5" style={{marginLeft:"150%",fontFamily:"Times New Roman Times serif"}}>
-        <a class="nav-link" href="#" style={{fontSize:"22px"}}>
-          <img src={menu} alt="menu"style={{height:'30px'}}/>
-        </a>
-      </li>
-    </ul>
-    </nav>
+  const showModal = () => {
+    setIsOpen(true);
+  };
+
+  const hideModal = () => {
+    setIsOpen(false);
+  };
+  return (
+    <>
+    <Link onClick={showModal} class="nav-link">Add Word</Link>
+    <Modal show={isOpen} onHide={hideModal}>
+      <Modal.Header>
+        <Modal.Title> Login</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" id="email"/>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" id="pwd"/>
+  </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <button onClick={hideModal} type="submit" class="btn btn-danger">Cancel</button>
+        <button  onClick={hideModal} type="submit" class="btn btn-primary">Submit</button> 
+      </Modal.Footer>
+    </Modal>
+  </>
   );
 };
-
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    profile: state.firebase.profile
-  };
-};
-export default connect(mapStateToProps)(Navbar);
+class Navbar extends React.Component {
+  render(){
+    
+    const { auth,profile } = this.props;
+    const links=auth.uid?<SignedInLink profile={profile}/>:<SignedOutLink/>;
+    return(
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        {/* <!-- Brand --> */}
+        <Link to='/' class="navbar-brand" href="#">Home</Link>
+        {/* <!-- Toggler/collapsibe Button --> */}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+{/*       
+        <!-- Navbar links --> */}
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <Link to='/' class="nav-link" href="#">About us</Link>
+            </li>
+            <li class="nav-item">
+               <App/> 
+            </li>
+          </ul>
+        </div>
+      </nav> 
+    )
+      }
+}
+const mapStateToProps = (state) => {
+     console.log(state);
+    return{
+      auth: state.firebase.auth,
+      profile:state.firebase.profile
+    }
+  }
+  
+  export default connect(mapStateToProps)(Navbar)
